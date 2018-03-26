@@ -24,7 +24,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceCreateWithGame()
+        public void GameServiceCreateWithGame_SuccesfulyComplete()
         {
             _unitOfWorkMock.Setup(x => x.GameRepository.Create(It.IsNotNull<Game>()));
             _unitOfWorkMock.Setup(x => x.Commit());
@@ -35,13 +35,13 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceCreateWithNull()
+        public void GameService_Create_WithNull_ArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => _gameService.Create(null));
         }
 
         [Fact]
-        public void GameServiceDeleteWithAnyString()
+        public void GameService_Delete_WithAnyString_SuccesfulyComplete()
         {
             string key = "string";
             _unitOfWorkMock.Setup(x => x.GameRepository.Delete(key));
@@ -52,13 +52,13 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceDeleteWithNull()
+        public void GameService_Delete_WithNull_KeyNotFoundException()
         {
-            Assert.Throws<ArgumentNullException>(() => _gameService.Delete(null));
+            Assert.Throws<KeyNotFoundException>(() => _gameService.Delete(null));
         }
 
         [Fact]
-        public void GameServiceGetAllTest()
+        public void GameService_GetAll_Games()
         {
             var expect = new List<Game> { new Game() };
             _unitOfWorkMock.Setup(x => x.GameRepository.GetAll()).Returns(expect);
@@ -70,7 +70,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceGetWithAnyKey()
+        public void GameService_Get_WithAnyKey_SuccesfulyComplete()
         {
             var expect = new Game();
             _unitOfWorkMock.Setup(x => x.GameRepository.Get(It.IsAny<string>())).Returns(expect);
@@ -82,7 +82,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceGetWithNull()
+        public void GameService_Get_WithNull_KeyNotFoundException()
         {
             _unitOfWorkMock.Setup(x => x.GameRepository.Get(null));
 
@@ -90,7 +90,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceUpdateWithGame()
+        public void GameService_Update_WithGame_SuccesfulyComplete()
         {
             _unitOfWorkMock.Setup(x => x.GameRepository.Update(It.IsNotNull<Game>()));
             _unitOfWorkMock.Setup(x => x.Commit());
@@ -101,13 +101,13 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceUpdateWithNull()
+        public void GameService_Update_WithNull_ArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => _gameService.Update(null));
         }
 
         [Fact]
-        public void GameServiceGetGamesByPlatformTypeWithKey()
+        public void GameService_GetGamesByPlatformType_WithKey_Equal()
         {
             var expect = new List<Game> { new Game() };
             var game = new PlatformType { Games = expect };
@@ -121,7 +121,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceGetGamesByPlatformTypeWithNull()
+        public void GameService_GetGamesByPlatformType_WithNull_KeyNotFoundException()
         {
             _unitOfWorkMock.Setup(x => x.PlatformTypeRepository.Get(null));
 
@@ -129,7 +129,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceGetGamesByGenreWithKey()
+        public void GameService_GetGamesByGenre_WithKey_Equal()
         {
             var expect = new List<Game> { new Game() };
             var game = new Genre { Games = expect };
@@ -143,7 +143,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void GameServiceGetGetGamesByGenreWithNull()
+        public void GameService_GetGamesByGenre_WithNull_KeyNotFoundException()
         {
             _unitOfWorkMock.Setup(x => x.GameRepository.Get(null));
 

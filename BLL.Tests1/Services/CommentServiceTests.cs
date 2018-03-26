@@ -25,7 +25,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void CommentServiceCreateWithNotNullComment()
+        public void CommentService_Create_WithNotNullComment_SuccesfulyComplete()
         {
             _unitOfWorkMock.Setup(x => x.CommentRepository.Create(It.IsNotNull<Comment>()));
             _unitOfWorkMock.Setup(x => x.Commit());
@@ -36,13 +36,13 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void CommentServiceCreateWithNull()
+        public void CommentService_Create_WithNull_ArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => _commentService.Create(null));
         }
 
         [Fact]
-        public void CommentServiceGetCommnetsByGameWithKey()
+        public void CommentServiceGetCommnetsByGameWithKey_SuccesfulyComplete()
         {
             var expect = new List<Comment> { new Comment() };
             var game = new Game { Comments = expect };
@@ -55,7 +55,7 @@ namespace BusinessLogicLayer.Tests.Services
         }
 
         [Fact]
-        public void CommentServiceGetCommnetsByGameWithNull()
+        public void CommentService_GetCommnetsByGame_WithNull_NullReferenceException()
         {
             _unitOfWorkMock.Setup(x => x.GameRepository.Get(null));
 
